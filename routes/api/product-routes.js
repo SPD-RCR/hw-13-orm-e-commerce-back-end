@@ -57,11 +57,11 @@ router.post("/", (req, res) => {
         const productTagIdArr = req.body.tagIds.map((tag) => {
           return {
             product_id: product.id,
-            tag_id: tag.id,
+            tag_id: tag.tag_id,
           };
         });
-        console.log("productTagIdAddr:", productTagIdAddr);
-        return ProductTag.bulkCreate(productTagIdAddr);
+        console.log("productTagIdArr:", productTagIdArr);
+        return ProductTag.bulkCreate(productTagIdArr);
       }
       // if no product tags, just respond
       res.status(200).json(product);
