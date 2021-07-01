@@ -4,7 +4,13 @@ Your task is to build the back end for an e-commerce site by modifying starter c
 
 ## Work in Progress
 
-Still have to do testing of product-routes Updtae and Delete.
-Did not complete Tag-routes yet. Plan to base the remaining tag routes on the product routes after they are working properly.
+Updated 6/30/21 10:20 pm
+product-routes > Get FindAll, Get FindbyID, Post Create New = Working
 
-Then video demo of testing routes working in insomnia.
+tag-routes > Get FindAll, Get FindbyID, Post Create New = Working
+
+Still have to do testing of product-routes Update and Delete.
+
+Planning to base the remaining tag-routes on the product routes after they are working properly.
+
+Then video demo of testing routes working in Insomnia or Postman.
