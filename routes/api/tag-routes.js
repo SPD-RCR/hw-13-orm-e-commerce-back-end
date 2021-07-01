@@ -8,8 +8,8 @@ router.get("/", async (req, res) => {
   // be sure to include its associated Product data
   try {
     const tagData = await Tag.findAll({
-      // JOIN with Product, using the ProductTag through table
-      include: [{ model: Product, through: ProductTag, as: "tag_id" }],
+      // JOIN with Product, through ProductTag  table
+      include: [{ model: Product, through: ProductTag }],
     });
     res.status(200).json(tagData);
   } catch (err) {
@@ -22,8 +22,8 @@ router.get("/:id", async (req, res) => {
   // be sure to include its associated Product data
   try {
     const tagData = await Tag.findByPk(req.params.id, {
-      // JOIN with Product, using the ProductTag through table
-      include: [{ model: Product, through: ProductTag, as: "tag_id" }],
+      // JOIN with Product, through ProductTag table
+      include: [{ model: Product, through: ProductTag }],
     });
 
     if (!tagData) {
@@ -49,13 +49,14 @@ router.post("/", (req, res) => {
     .then((tag) => {
       // if there's tags, we need to create pairings to bulk create in the ProductTag model
       if (req.body.productIds.length) {
-        const productTagIdArr = req.body.productIds.map((product_id) => {
+        const productTagIdArr = req.body.productIds.map((product) => {
           return {
             tag_id: tag.id,
-            product_id,
+            product_id: product.product_id,
           };
         });
-        return ProductTag.bulkCreate(preq.body.productIds);
+        console.log("productTagIdArr:", productTagIdArr);
+        return ProductTag.bulkCreate(productTagIdArr);
       }
       // if no product tags, just respond
       res.status(200).json(product);
